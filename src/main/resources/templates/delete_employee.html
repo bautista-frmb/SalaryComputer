@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="~{layouts/base_template}">
+<head>
+  <title>Delete Employee - Salary Computer</title>
+</head>
+<body>
+  <div layout:fragment="content">
+    <div class="container">
+      <form class="row g-4" th:action="@{/delete-employee}" th:method="post">
+        <input type="hidden" name="fromWhere" value="deletePage">
+        <div class="col-md-3">
+          <label class="form-label" for="first-name">First Name:</label>
+          <input class="form-control" id="first-name" name="firstName" type="text" required>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label" for="last-name">Last Name:</label>
+          <input class="form-control" id="last-name" name="lastName" type="text" required>
+        </div>
+        <div class="col-md-3" style="transform: translateY(45%);">
+          <button class="btn btn-dark" type="submit">Delete</button>
+        </div>
+      </form>
+    </div>
+    <br>
+    <h4 th:if="${error}" th:text="${error}"></h4>
+    <h4 th:if="${deleted}" th:text="${deletedMsg}"></h4>
+  </div>
+</body>
+</html>

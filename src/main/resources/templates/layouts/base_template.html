@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <script src="/bootstrap/js/bootstrap.bundle.js" defer></script>
+
+  <title>Salary Computer</title>
+
+  <style>
+    footer {
+      margin-top: 20px;
+      border-top: 3px solid #212529;
+    }
+
+    footer>p {
+      text-align: center;
+      margin: 0;
+      font-size: small;
+    }
+
+    footer>p>a {
+      text-decoration: none;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!--/*will be replaced by common_nav_bar*/-->
+  <div th:replace="~{layouts/common_nav_bar :: nav_bar}">Nave Bar goes here</div>
+
+  <!--/*will be replaced by the real contents*/-->
+  <div layout:fragment="content">Page Content goes here</div>
+
+  <!--/*will be replaced by common_footer*/-->
+  <div th:replace="~{layouts/common_footer :: footer}">Footer goes here</div>
+  <script>
+    let navItems = document.getElementsByClassName("nav-link");
+    for (let i = 0; i < navItems.length; i++) {
+      if (window.location.href.includes(navItems[i].href)) {
+        navItems[i].classList.add("active");
+        break;
+      }
+    }
+  </script>
+</body>
+
+</html>

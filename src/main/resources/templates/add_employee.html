@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="~{layouts/base_template}">
+<head>
+  <title>Add Employee - Salary Computer</title>
+</head>
+<body>
+  <div layout:fragment="content">
+    <div class="container">
+      <form class="row g-4" th:action="@{/add-employee}" th:object="${employeeToAdd}" th:method="post">
+        <div class="col-md-3">
+          <label class="form-label" for="first-name">First Name:</label>
+          <input class="form-control" id="first-name" name="firstName" type="text" required>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label" for="last-name">Last Name:</label>
+          <input class="form-control" id="last-name" name="lastName" type="text" required>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label" for="age">Age:</label>
+          <input class="form-control" id="age" name="age" type="number" inputmode="numeric" required>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label" for="monthlyRate">Monthly Rate:</label>
+          <input class="form-control" id="monthlyRate" name="monthlyRate" type="number" inputmode="numeric" required>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label" for="sss">SSS Contribution:</label>
+          <input class="form-control" id="sss" name="sss" type="number" inputmode="numeric" required>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label" for="philhealth">PhilHealth Contribution:</label>
+          <input class="form-control" id="philhealth" name="philhealth" type="number" inputmode="numeric" required>
+        </div>
+        <div class="col-md-3" style="transform: translateY(45%);">
+          <button class="btn btn-dark" type="submit">Add</button>
+        </div>
+      </form>
+    </div>
+    <br>
+    <h4 th:if="${error}"><span th:text="${error}"></span></h4>
+    <div class="container" th:if="${addedEmployee}">
+      <p>Employee Added</p>
+      <p th:each="info : ${addedEmployee.toStringArray()}" th:text="${info}"></p>
+    </div>
+  </div>
+</body>
+</html>

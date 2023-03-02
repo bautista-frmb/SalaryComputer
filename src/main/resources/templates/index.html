@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="~{layouts/base_template}">
+<head>
+  <title>Salary Computer</title>
+  <style>
+    .table-wrapper {
+      width: 100vw;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="table-wrapper" layout:fragment="content">
+    <table class="table table-hover" aria-describedby="employee-table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Age</th>
+          <th scope="col">Monthly Rate</th>
+          <th scope="col">SSS Contribution</th>
+          <th scope="col">PhilHealth Contribution</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="employee : ${employeeList}">
+          <th th:text="${employee.getId()}" scope="row"></th>
+          <td th:text="|${employee.getFirstName()} ${employee.getLastName()}|"></td>
+          <td th:text="${employee.getAge()}"></td>
+          <td th:text="|₱${employee.getMonthlyRate()}|"></td>
+          <td th:text="|₱${employee.getSss()}|"></td>
+          <td th:text="|₱${employee.getPhilhealth()}|"></td>
+          <td>
+            <form style="display: inline;" th:action="@{/delete-employee}" method="post">
+              <input type="hidden" name="fromWhere" value="index">
+              <input type="hidden" name="firstName" th:value="${employee.getFirstName()}">
+              <input type="hidden" name="lastName" th:value="${employee.getLastName()}">
+              <button class="btn btn-danger">Delete</button>
+            </form>
+            <form style="display: inline;" th:action="@{/update-employee/edit}" method="post">
+              <input type="hidden" name="firstName" th:value="${employee.getFirstName()}">
+              <input type="hidden" name="lastName" th:value="${employee.getLastName()}">
+              <button class="btn btn-secondary">Update</button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
